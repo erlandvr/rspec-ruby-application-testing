@@ -2,7 +2,7 @@ class Card
   def self.build(suit, rank)
     new(suit: suit, rank: rank)
   end
-  private_class_method :new
+  #private_class_method :new
 
   def initialize(suit:, rank:)
     @suit = suit
@@ -53,5 +53,41 @@ class Card
     }
 
     "#{id.upcase}#{s.fetch(suit)}"
+  end
+end
+
+RSpec.describe 'a playing card' do
+  it 'has a suit' do
+    raise unless Card.new(suit: :spades, rank: 4).suit == :spades
+  end
+  it 'has a rank' do
+    raise unless Card.new(suit: :spades, rank: 4).rank == 4
+  end
+
+  describe 'a jack' do
+    it 'ranks higher than a 10' do
+      lower = Card.new(suit: :spades, rank: 10)
+      higher = Card.new(suit: :spades, rank: :jack)
+
+      raise unless higher.rank > lower.rank
+    end
+  end
+
+   describe 'a queen' do
+    it 'ranks higher than a 10' do
+      lower = Card.new(suit: :spades, rank: :jack)
+      higher = Card.new(suit: :spades, rank: :queen)
+
+      raise unless higher.rank > lower.rank
+    end
+  end
+
+   describe 'a king' do
+    it 'ranks higher than a 10' do
+      lower = Card.new(suit: :spades, rank: :queen)
+      higher = Card.new(suit: :spades, rank: :king)
+
+      raise unless higher.rank > lower.rank
+    end
   end
 end

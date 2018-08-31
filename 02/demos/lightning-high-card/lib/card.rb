@@ -2,7 +2,7 @@ class Card
   def self.build(suit, rank)
     new(suit: suit, rank: rank)
   end
-  #private_class_method :new
+ private_class_method :new
 
   def initialize(suit:, rank:)
     @suit = suit
@@ -33,26 +33,6 @@ class Card
   def eql?(other)
     self == other
   end
-
-  def to_s
-    id = if rank > 10
-      {
-        11 => "J",
-        12 => "Q",
-        13 => "K"
-      }.fetch(rank)
-    else
-      rank.to_s
-    end
-
-    s = {
-      hearts: "♡ ",
-      spades: "♤ ",
-      diamonds: "♢ ",
-      clubs: "♧ ",
-    }
-
-    "#{id.upcase}#{s.fetch(suit)}"
-  end
 end
+
 

@@ -30,14 +30,14 @@ module HighCard
         .last
 
       puts "Your hand is       #{hand.join(", ")}"
-      print "Bet $1 to win? N/y: "
+      print "Bet $1 to win? n/y: "
       start = Time.now
       input = $stdin.gets
       if (input.chomp.downcase == "y") ^ (opposing == winning)
-        puts "You won!"
+        puts "You won"
         account.credit!(login, 1)
       else
-        puts "You lost!"
+        puts "You lost"
         account.debit!(login, 1)
       end
       puts "Opposing hand was  #{opposing.join(", ")}"
